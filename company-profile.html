@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Profile - Darrel & Ayien's Five Star Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="lab-exercise">GRADED LABORATORY EXERCISE</div>
+        <div class="datetime" id="currentDateTime">Loading...</div>
+    </div>
+
+    <div class="container fade-in">
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="fade-in-up">DARREL & AYIEN'S</h1>
+                <h2 class="fade-in-up delay-1">FIVE STAR HOTEL</h2>
+                <p class="subtitle fade-in-up delay-2">COMPANY PROFILE</p>
+            </div>
+            <div class="header-decoration"></div>
+        </header>
+
+        <nav class="top-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="company-profile.html" class="nav-item active">Company's Profile</a>
+            <a href="ReservationUrdasDiether.html" class="nav-item">Reservation</a>
+            <a href="contacts.html" class="nav-item">Contacts</a>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="form-container">
+                <div class="profile-section">
+                    <h2 class="section-title">About Us</h2>
+                    <p class="profile-text">
+                        Established in 1995, Darrel & Ayien's Five Star Hotel has been a beacon of luxury and excellence in the hospitality industry. 
+                        Named after our founders, Diether Urdas and Andrei Saromo, our hotel represents a perfect blend of timeless elegance and modern sophistication.
+                    </p>
+                    <p class="profile-text">
+                        With over 200 elegantly designed rooms and suites, we have been serving distinguished guests from around the world for nearly three decades. 
+                        Our commitment to exceptional service and attention to detail has earned us numerous awards and recognition in the hospitality sector.
+                    </p>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">Our Mission</h2>
+                    <p class="profile-text">
+                        To provide unparalleled luxury experiences that exceed our guests' expectations while maintaining the highest standards of service, 
+                        comfort, and hospitality. We strive to create memorable moments that last a lifetime.
+                    </p>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">Our Vision</h2>
+                    <p class="profile-text">
+                        To be recognized as the premier destination for luxury hospitality, setting new benchmarks in the industry through innovation, 
+                        sustainability, and unwavering dedication to guest satisfaction.
+                    </p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">28+</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Luxury Rooms</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Happy Guests</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Awards Won</div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">Our Values</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">✨</div>
+                            <h3>Excellence</h3>
+                            <p>We strive for perfection in every detail</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">❤️</div>
+                            <h3>Hospitality</h3>
+                            <p>Genuine care for every guest</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🌱</div>
+                            <h3>Sustainability</h3>
+                            <p>Committed to environmental responsibility</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3>Integrity</h3>
+                            <p>Honest and transparent in all dealings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <h2 class="section-title">Leadership Team</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <div class="team-icon">👔</div>
+                            <h3>Diether Urdas</h3>
+                            <p class="team-role">Co-Founder & CEO</p>
+                            <p class="team-bio">Visionary leader with 30+ years in hospitality</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-icon">👔</div>
+                            <h3>Andrei Saromo</h3>
+                            <p class="team-role">Co-Founder & COO</p>
+                            <p class="team-bio">Operations expert ensuring seamless guest experiences</p>
+                        </div>
+                        <div class="team-card">
+                            <div class="team-icon">👔</div>
+                            <h3>Nikki Corpuz</h3>
+                            <p class="team-role">General Manager</p>
+                            <p class="team-bio">Dedicated to maintaining our high standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            const dateTimeString = `${month} ${day}, ${year} @ ${timeString}`;
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>

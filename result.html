@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation - Darrel & Ayien's Five Star Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="lab-exercise">MACHINE PROBLEM </div>
+        <div class="datetime" id="currentDateTime">Loading...</div>
+    </div>
+
+    <div class="container fade-in">
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="fade-in-up">DARREL & AYIEN'S</h1>
+                <h2 class="fade-in-up delay-1">FIVE STAR HOTEL</h2>
+                <p class="subtitle fade-in-up delay-2">RESERVATION CONFIRMATION</p>
+            </div>
+            <div class="header-decoration"></div>
+        </header>
+
+        <nav class="top-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="company-profile.html" class="nav-item">Company's Profile</a>
+            <a href="ReservationUrdasDiether.html" class="nav-item active">Reservation</a>
+            <a href="contacts.html" class="nav-item">Contacts</a>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="form-container">
+                <div class="result-section">
+                <div class="success-icon">
+                    <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                
+                <h2 class="success-title">Reservation Submitted Successfully!</h2>
+                <p class="success-message">Thank you for choosing Darrel & Ayien's Five Star Hotel. Your reservation has been confirmed.</p>
+
+                <div class="confirmation-card">
+                    <div class="card-header">
+                        <h3>Reservation Details</h3>
+                        <div class="reservation-id">Reservation ID: <span id="reservationId"></span></div>
+                    </div>
+                    
+                    <div class="details-grid">
+                        <div class="detail-item">
+                            <div class="detail-label">Customer Name</div>
+                            <div class="detail-value" id="customerName"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Contact Number</div>
+                            <div class="detail-value" id="contactNumber"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Date Reserved</div>
+                            <div class="detail-value" id="dateReserved"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Time Reserved</div>
+                            <div class="detail-value" id="timeReserved"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Check-in Date</div>
+                            <div class="detail-value" id="checkInDate"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Check-out Date</div>
+                            <div class="detail-value" id="checkOutDate"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Room Type</div>
+                            <div class="detail-value" id="roomType"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Room Capacity</div>
+                            <div class="detail-value" id="roomCapacity"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Payment Type</div>
+                            <div class="detail-value" id="paymentType"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Total Nights</div>
+                            <div class="detail-value" id="totalNights"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Price Per Night</div>
+                            <div class="detail-value" id="pricePerNight"></div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Base Total</div>
+                            <div class="detail-value" id="baseTotalBill"></div>
+                        </div>
+                        <div class="detail-item" id="discountItem" style="display: none;">
+                            <div class="detail-label">Cash Discount</div>
+                            <div class="detail-value discount-value" id="discount"></div>
+                        </div>
+                        <div class="detail-item" id="chargeItem" style="display: none;">
+                            <div class="detail-label">Additional Charge</div>
+                            <div class="detail-value charge-value" id="additionalCharge"></div>
+                        </div>
+                        <div class="detail-item highlight-bill">
+                            <div class="detail-label">Total Bill</div>
+                            <div class="detail-value" id="totalBill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <a href="ReservationUrdasDiether.html" class="btn btn-primary">Make Another Reservation</a>
+                    <button onclick="window.print()" class="btn btn-secondary">Print Confirmation</button>
+                </div>
+
+                <div class="info-box">
+                    <p><strong>Important:</strong> Please arrive at the hotel on your check-in date. A confirmation email has been sent to your contact number. For any changes or cancellations, please contact us at least 24 hours before your check-in date.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get reservation data from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Populate reservation details
+        document.getElementById('customerName').textContent = urlParams.get('customerName') || 'N/A';
+        document.getElementById('contactNumber').textContent = urlParams.get('contactNumber') || 'N/A';
+        
+        // Get and display date and time reserved
+        const now = new Date();
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        
+        const dateReserved = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+        const timeReserved = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+        
+        document.getElementById('dateReserved').textContent = dateReserved;
+        document.getElementById('timeReserved').textContent = timeReserved;
+        
+        document.getElementById('checkInDate').textContent = `${urlParams.get('fromMonth')} ${urlParams.get('fromDay')}, ${urlParams.get('fromYear')}`;
+        document.getElementById('checkOutDate').textContent = `${urlParams.get('toMonth')} ${urlParams.get('toDay')}, ${urlParams.get('toYear')}`;
+        document.getElementById('roomType').textContent = urlParams.get('roomType') || 'N/A';
+        document.getElementById('roomCapacity').textContent = urlParams.get('roomCapacity') || 'N/A';
+        document.getElementById('paymentType').textContent = urlParams.get('paymentType') || 'N/A';
+        
+        // Display total nights
+        const totalNights = urlParams.get('totalNights') || '1';
+        document.getElementById('totalNights').textContent = `${totalNights} night(s)`;
+        
+        // Display price per night
+        const pricePerNight = parseFloat(urlParams.get('pricePerNight')) || 0;
+        document.getElementById('pricePerNight').textContent = '₱' + pricePerNight.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        // Display base total bill
+        const baseTotalBill = parseFloat(urlParams.get('baseTotalBill')) || 0;
+        document.getElementById('baseTotalBill').textContent = '₱' + baseTotalBill.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        // Display discount or additional charge based on payment type
+        const paymentType = urlParams.get('paymentType');
+        const discount = parseFloat(urlParams.get('discount')) || 0;
+        const discountPercent = parseFloat(urlParams.get('discountPercent')) || 0;
+        const additionalCharge = parseFloat(urlParams.get('additionalCharge')) || 0;
+        
+        if (paymentType === 'Cash' && discount > 0) {
+            document.getElementById('discountItem').style.display = 'block';
+            document.getElementById('discount').textContent = discountPercent + '% - ₱' + discount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        } else if (paymentType === 'Cheque' && additionalCharge > 0) {
+            document.getElementById('chargeItem').style.display = 'block';
+            document.getElementById('additionalCharge').textContent = '+5% - ₱' + additionalCharge.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        } else if (paymentType === 'Credit Card' && additionalCharge > 0) {
+            document.getElementById('chargeItem').style.display = 'block';
+            document.getElementById('additionalCharge').textContent = '+10% - ₱' + additionalCharge.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+        
+        // Display total bill
+        const totalBill = parseFloat(urlParams.get('totalBill')) || 0;
+        document.getElementById('totalBill').textContent = '₱' + totalBill.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        
+        // Generate random reservation ID
+        const reservationId = 'RES' + Math.random().toString(36).substr(2, 9).toUpperCase();
+        document.getElementById('reservationId').textContent = reservationId;
+        
+        // Update datetime in real-time
+        function updateDateTime() {
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            const dateTimeString = `${month} ${day}, ${year} @ ${timeString}`;
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
