@@ -1,0 +1,258 @@
+<?php
+session_start();
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : '';
+unset($_SESSION['error']);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Reservation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="lab-exercise">MACHINE PROBLEM</div>
+        <div class="datetime" id="currentDateTime">Loading...</div>
+    </div>
+
+    <div class="container fade-in">
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="fade-in-up">DARREL & AYIEN'S</h1>
+                <h2 class="fade-in-up delay-1">FIVE STAR HOTEL</h2>
+                <p class="subtitle fade-in-up delay-2">ON-LINE RESERVATION SYSTEM</p>
+            </div>
+            <div class="header-decoration"></div>
+        </header>
+
+        <nav class="top-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="company-profile.html" class="nav-item">Company's Profile</a>
+            <a href="ReservationUrdasSaromo.php" class="nav-item active">Reservation</a>
+            <a href="contacts.html" class="nav-item">Contacts</a>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="form-container">
+                <div class="form-header">
+                    <h3>Reservation Form</h3>
+                    <p>Please supply all necessary information below</p>
+                </div>
+                <?php if ($error): ?>
+                <div class="error-message" style="background-color: #ffebee; color: #c62828; padding: 15px; border-radius: 5px; margin-bottom: 20px; border-left: 4px solid #c62828;">
+                    <strong>Error:</strong> <?php echo htmlspecialchars($error); ?>
+                </div>
+                <?php endif; ?>
+                <form id="reservationForm" method="POST" action="process_reservation.php">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="customerName">
+                                <span class="label-icon">👤</span>
+                                Customer Name
+                            </label>
+                            <input type="text" id="customerName" name="customerName" value="Diether Urdas" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactNumber">
+                                <span class="label-icon">📞</span>
+                                Contact Number
+                            </label>
+                            <input type="text" id="contactNumber" name="contactNumber" value="09125699136" required>
+                        </div>
+                    </div>
+
+                    <div class="form-section-card">
+                        <div class="section-title">
+                            <span class="section-icon">📅</span>
+                            Reservation Dates
+                        </div>
+                        <div class="date-range">
+                            <div class="date-group">
+                                <label class="date-label">Check-in Date</label>
+                                <div class="date-inputs">
+                                    <select name="fromMonth" id="fromMonth" required>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July" selected>July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                    <select name="fromDay" id="fromDay" required>
+                                        <option value="">Day</option>
+                                    </select>
+                                    <select name="fromYear" id="fromYear" required>
+                                        <option value="">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="date-separator">→</div>
+                            <div class="date-group">
+                                <label class="date-label">Check-out Date</label>
+                                <div class="date-inputs">
+                                    <select name="toMonth" id="toMonth" required>
+                                        <option value="January">January</option>
+                                        <option value="February">February</option>
+                                        <option value="March">March</option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July" selected>July</option>
+                                        <option value="August">August</option>
+                                        <option value="September">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select>
+                                    <select name="toDay" id="toDay" required>
+                                        <option value="">Day</option>
+                                    </select>
+                                    <select name="toYear" id="toYear" required>
+                                        <option value="">Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-section-card">
+                            <div class="section-title">
+                                <span class="section-icon">🛏️</span>
+                                Room Type
+                            </div>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="roomType" value="Suite" checked>
+                                    <div class="radio-content">
+                                        <span class="radio-title">Suite</span>
+                                        <span class="radio-desc">Luxury</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="roomType" value="De Luxe">
+                                    <div class="radio-content">
+                                        <span class="radio-title">De Luxe</span>
+                                        <span class="radio-desc">Premium</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="roomType" value="Regular">
+                                    <div class="radio-content">
+                                        <span class="radio-title">Regular</span>
+                                        <span class="radio-desc">Standard</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-section-card">
+                            <div class="section-title">
+                                <span class="section-icon">👥</span>
+                                Room Capacity
+                            </div>
+                            <div class="radio-group">
+                                <label class="radio-card">
+                                    <input type="radio" name="roomCapacity" value="Family" checked>
+                                    <div class="radio-content">
+                                        <span class="radio-title">Family</span>
+                                        <span class="radio-desc">4+ Guests</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="roomCapacity" value="Double">
+                                    <div class="radio-content">
+                                        <span class="radio-title">Double</span>
+                                        <span class="radio-desc">2 Guests</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="roomCapacity" value="Single">
+                                    <div class="radio-content">
+                                        <span class="radio-title">Single</span>
+                                        <span class="radio-desc">1 Guest</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section-card">
+                        <div class="section-title">
+                            <span class="section-icon">💳</span>
+                            Payment Type
+                        </div>
+                        <div class="radio-group payment-group">
+                            <label class="radio-card payment-card">
+                                <input type="radio" name="paymentType" value="Cash" checked>
+                                <div class="radio-content">
+                                    <span class="radio-title">Cash</span>
+                                    <span class="radio-desc">No additional charge</span>
+                                </div>
+                            </label>
+                            <label class="radio-card payment-card">
+                                <input type="radio" name="paymentType" value="Cheque">
+                                <div class="radio-content">
+                                    <span class="radio-title">Cheque</span>
+                                    <span class="radio-desc">+5% charge</span>
+                                </div>
+                            </label>
+                            <label class="radio-card payment-card">
+                                <input type="radio" name="paymentType" value="Credit Card">
+                                <div class="radio-content">
+                                    <span class="radio-title">Credit Card</span>
+                                    <span class="radio-desc">+10% charge</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-submit">
+                            <span>Submit Reservation</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <button type="button" class="btn btn-clear" onclick="clearForm()">Clear Entry</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Processing your reservation...</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            const dateTimeString = `${month} ${day}, ${year} @ ${timeString}`;
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>

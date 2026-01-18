@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts - Darrel & Ayien's Five Star Hotel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="lab-exercise">GRADED LABORATORY EXERCISE</div>
+        <div class="datetime" id="currentDateTime">Loading...</div>
+    </div>
+
+    <div class="container fade-in">
+        <header class="main-header">
+            <div class="header-content">
+                <h1 class="fade-in-up">DARREL & AYIEN'S</h1>
+                <h2 class="fade-in-up delay-1">FIVE STAR HOTEL</h2>
+                <p class="subtitle fade-in-up delay-2">CONTACT US</p>
+            </div>
+            <div class="header-decoration"></div>
+        </header>
+
+        <nav class="top-nav">
+            <a href="home.html" class="nav-item">Home</a>
+            <a href="company-profile.html" class="nav-item">Company's Profile</a>
+            <a href="ReservationUrdasSaromo.php" class="nav-item">Reservation</a>
+            <a href="contacts.html" class="nav-item active">Contacts</a>
+        </nav>
+
+        <div class="content-wrapper">
+            <div class="form-container">
+                <div class="contact-hero">
+                    <h2 class="hero-title">Get in Touch</h2>
+                    <p class="hero-subtitle">We're here to assist you 24/7</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>Address</h3>
+                        <p>123 Luxury Boulevard<br>Metropolitan City, MC 12345<br>Philippines</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📞</div>
+                        <h3>Phone</h3>
+                        <p>Main: +63 2 1234 5678<br>Reservations: +63 2 1234 5679<br>Emergency: +63 917 123 4567</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <h3>Email</h3>
+                        <p>info@darrelayienhotel.com<br>reservations@darrelayienhotel.com<br>support@darrelayienhotel.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">🌐</div>
+                        <h3>Website & Social</h3>
+                        <p>www.darrelayienhotel.com<br>@darrelayienhotel<br>Facebook | Instagram | Twitter</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-section">
+                    <h2 class="section-title">Send Us a Message</h2>
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">
+                                    <span class="label-icon">👤</span>
+                                    Your Name
+                                </label>
+                                <input type="text" id="contactName" name="contactName" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">
+                                    <span class="label-icon">✉️</span>
+                                    Email Address
+                                </label>
+                                <input type="email" id="contactEmail" name="contactEmail" placeholder="your.email@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">
+                                <span class="label-icon">📋</span>
+                                Subject
+                            </label>
+                            <input type="text" id="contactSubject" name="contactSubject" placeholder="What is this regarding?" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">
+                                <span class="label-icon">💬</span>
+                                Message
+                            </label>
+                            <textarea id="contactMessage" name="contactMessage" rows="6" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-submit">
+                                <span>Send Message</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="office-hours">
+                    <h2 class="section-title">Office Hours</h2>
+                    <div class="hours-grid">
+                        <div class="hours-card">
+                            <h3>Front Desk</h3>
+                            <p>24 Hours / 7 Days a Week</p>
+                        </div>
+                        <div class="hours-card">
+                            <h3>Reservations</h3>
+                            <p>Monday - Sunday<br>8:00 AM - 10:00 PM</p>
+                        </div>
+                        <div class="hours-card">
+                            <h3>Concierge</h3>
+                            <p>Monday - Sunday<br>6:00 AM - 11:00 PM</p>
+                        </div>
+                        <div class="hours-card">
+                            <h3>Business Center</h3>
+                            <p>Monday - Friday<br>9:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+            const month = months[now.getMonth()];
+            const day = now.getDate();
+            const year = now.getFullYear();
+            const hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            const displayHours = hours % 12 || 12;
+            const timeString = `${displayHours.toString().padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            const dateTimeString = `${month} ${day}, ${year} @ ${timeString}`;
+            document.getElementById('currentDateTime').textContent = dateTimeString;
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>
